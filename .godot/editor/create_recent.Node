@@ -1,0 +1,10 @@
+GifToSpriteFramesPlugin
+GifToAnimatedTexturePlugin
+Sprite2D
+Label
+CanvasLayer
+CollisionShape2D
+CharacterBody2D
+Area2D
+Marker2D
+Node

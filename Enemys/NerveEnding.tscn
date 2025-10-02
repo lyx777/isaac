@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2onjucemmnlb"]
+
+[ext_resource type="Script" uid="uid://bscye7l0q6lk8" path="res://Enemys/NerveEnding.cs" id="1_byldx"]
+
+[node name="NerveEnding" type="Node2D"]
+script = ExtResource("1_byldx")
+
+[node name="GifToSpriteFramesPlugin" type="GifToSpriteFramesPlugin" parent="."]
