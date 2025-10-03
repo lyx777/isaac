@@ -1,8 +1,81 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2onjucemmnlb"]
+[gd_scene load_steps=17 format=3 uid="uid://d2onjucemmnlb"]
 
 [ext_resource type="Script" uid="uid://bscye7l0q6lk8" path="res://Enemys/NerveEnding.cs" id="1_byldx"]
+[ext_resource type="Texture2D" uid="uid://srxe2fd1kp7g" path="res://pic/never/1.png" id="2_2e07i"]
+[ext_resource type="Texture2D" uid="uid://cce4icwj2l53a" path="res://pic/never/2.png" id="3_4lvlx"]
+[ext_resource type="Texture2D" uid="uid://dr7dkhy0qqbd2" path="res://pic/never/3.png" id="4_r4qs5"]
+[ext_resource type="Texture2D" uid="uid://dkn37vbvycax4" path="res://pic/never/4.png" id="5_mjw0n"]
+[ext_resource type="Texture2D" uid="uid://dxr5kd86i51ap" path="res://pic/never/5.png" id="6_jc7o8"]
+[ext_resource type="Texture2D" uid="uid://bbpibtysdvsnx" path="res://pic/never/6.png" id="7_i3ei3"]
+[ext_resource type="Texture2D" uid="uid://y4c6sxufwc4p" path="res://pic/never/7.png" id="8_a22t0"]
+[ext_resource type="Texture2D" uid="uid://blitacqawbe7w" path="res://pic/never/8.png" id="9_kd4gn"]
+[ext_resource type="Texture2D" uid="uid://cc284n28s6xpt" path="res://pic/never/9.png" id="10_e0mo3"]
+[ext_resource type="Texture2D" uid="uid://dcv4ysl6wj6i1" path="res://pic/never/10.png" id="11_l7h0w"]
+[ext_resource type="Texture2D" uid="uid://borytfcq7rsyw" path="res://pic/never/11.png" id="12_fsjt6"]
+[ext_resource type="Texture2D" uid="uid://bf31lvik5nlpr" path="res://pic/never/12.png" id="13_8hwj3"]
+[ext_resource type="Texture2D" uid="uid://cuqkxhhruslie" path="res://pic/never/13.png" id="14_eqen0"]
 
-[node name="NerveEnding" type="Node2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_hukra"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2e07i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4lvlx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r4qs5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mjw0n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jc7o8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_i3ei3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a22t0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_kd4gn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_e0mo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_l7h0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_fsjt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_8hwj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_eqen0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aadlj"]
+radius = 39.0
+height = 78.0
+
+[node name="NerveEnding" type="CharacterBody2D" groups=["BodyEnteredCostHP", "enemy"]]
+scale = Vector2(0.5088629, 0.50020576)
 script = ExtResource("1_byldx")
 
-[node name="GifToSpriteFramesPlugin" type="GifToSpriteFramesPlugin" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_hukra")
+frame = 7
+frame_progress = 0.61574614
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 39)
+shape = SubResource("CapsuleShape2D_aadlj")

@@ -4,31 +4,37 @@ using System;
 public partial class CombatActor : CharacterBody2D
 {
 	public int MaxHealth = 10;         // 最大生命值
-	[Export] public PackedScene BulletScene;    
+	[Export] public PackedScene BulletScene;
 	public float ShootCD = 0.3f; // 射击冷却时间(秒)
 	public float BulletSpeed = 400f;   // 子弹速度
-
-	protected int currentHealth;
+	public int ATK = 1; //攻击力
+	public float BloodTime = 0f;// 受伤无敌时间
+	public float BloodDuration = 0f;
+	public int currentHealth;
 	protected double shootTimer = 0.0;
 
+	public int BoomNum = 0; // 炸弹数量
 	public override void _Ready()
 	{
+		GD.Print(Name + " is ready with MaxHealth: " + MaxHealth);
 		currentHealth = MaxHealth;
 	}
 
 	public override void _Process(double delta)
 	{
+		//GD.Print(Name + " HP:" + currentHealth);
+		BloodTime -= (float)delta;
 		shootTimer -= delta;
 	}
-
 
 	// 扣血
 
 	public virtual void TakeDamage(int amount)
 	{
+		if (BloodTime > 0) return; // 处于无敌时间
 		currentHealth -= amount;
 		GD.Print(Name + " took damage: " + amount);
-
+		BloodTime = BloodDuration;
 		if (currentHealth <= 0)
 		{
 			Die();
@@ -40,8 +46,8 @@ public partial class CombatActor : CharacterBody2D
 
 	protected virtual void Die()
 	{
-		QueueFree(); 
-		
+		QueueFree();
+
 	}
 
 
@@ -55,7 +61,7 @@ public partial class CombatActor : CharacterBody2D
 		{
 			var bullet = BulletScene.Instantiate<Bullet>();
 			GetTree().CurrentScene.AddChild(bullet);
-
+			bullet.ATK = ATK;
 			bullet.GlobalPosition = GetNode<Marker2D>("GunPoint").GlobalPosition;
 			bullet.Direction = direction.Normalized();
 			bullet.Speed = BulletSpeed;
@@ -63,5 +69,14 @@ public partial class CombatActor : CharacterBody2D
 		}
 
 		shootTimer = ShootCD;
+	}
+	
+	public void Explode()
+	{
+		if (BoomNum <= 0) return;
+		BoomNum--;
+		var boom = GD.Load<PackedScene>("res://tools/Boom.tscn").Instantiate<Boom>();
+		boom.GlobalPosition = GlobalPosition;
+		GetTree().Root.AddChild(boom);
 	}
 }

@@ -33,3 +33,4 @@ C:\Users\lygot\Desktop\isaac\.godot\mono\temp\obj\Debug\refint\rougelike.dll
 C:\Users\lygot\Desktop\isaac\.godot\mono\temp\obj\Debug\rougelike.pdb
 C:\Users\lygot\Desktop\isaac\.godot\mono\temp\obj\Debug\rougelike.genruntimeconfig.cache
 C:\Users\lygot\Desktop\isaac\.godot\mono\temp\obj\Debug\ref\rougelike.dll
+C:\Users\lygot\Desktop\isaac\.godot\mono\temp\obj\Debug\rougelike.sourcelink.json

@@ -5,19 +5,22 @@
 [ext_resource type="Texture2D" uid="uid://dnlo31f70huov" path="res://pic/isa.png" id="3_tok1r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q3lat"]
-radius = 31.0
-height = 76.0
+radius = 19.0
+height = 56.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_3qydi")
 BulletScene = ExtResource("2_tok1r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -3.8146973e-06)
+scale = Vector2(1.765625, 1.703125)
 texture = ExtResource("3_tok1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 22)
+position = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_q3lat")
 
 [node name="GunPoint" type="Marker2D" parent="."]
-position = Vector2(-6, 39)
+position = Vector2(1.4305115e-06, -1.0000038)
+rotation = -3.0855405

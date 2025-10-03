@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwch2ta82t6o1"]
+
+[ext_resource type="Texture2D" uid="uid://c8nc5pni6ifpl" path="res://pic/boom/1.png" id="1_2ic0x"]
+[ext_resource type="Script" uid="uid://b3o55wq4kd1ac" path="res://tools/Boom.cs" id="1_ap3l2"]
+[ext_resource type="Texture2D" uid="uid://vafjvir835vd" path="res://pic/boom/2.png" id="2_ap3l2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svo1p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2ic0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ap3l2")
+}],
+"loop": true,
+"name": &"boom",
+"speed": 4.0
+}]
+
+[node name="Boom" type="Node2D"]
+script = ExtResource("1_ap3l2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.000001, 0)
+scale = Vector2(0.7416667, 0.6458333)
+sprite_frames = SubResource("SpriteFrames_svo1p")
+animation = &"boom"
+frame_progress = 0.8668873

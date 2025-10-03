@@ -9,7 +9,7 @@ public partial class Bullet : Area2D
 {
 	public float Speed = 300f;
 	public Vector2 Direction = Vector2.Zero;
-
+	public int ATK=1;
 	public Faction ShooterFaction;  // 发射方阵营
 
 	public override void _Process(double delta)
@@ -22,12 +22,12 @@ public partial class Bullet : Area2D
 
 		if (ShooterFaction == Faction.Player && body is Enemy enemy)
 		{
-			enemy.TakeDamage(1);
+			enemy.TakeDamage(ATK);
 			QueueFree();
 		}
 		else if (ShooterFaction == Faction.Enemy && body is Player player)
 		{
-			player.TakeDamage(1);
+			player.TakeDamage(ATK);
 			QueueFree();
 		}
 	}
