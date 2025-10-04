@@ -1,10 +1,10 @@
 res://Main.tscn
 res://assets/background.tres
-res://Player/Player.cs
+res://Bullets/Bullet.cs
 res://tools/Boom.cs
+res://Player/Player.cs
 res://Enemys/Enemy.cs
 res://CombatActor.cs
 res://Enemys/NerveEnding.cs
 res://Main.cs
-res://Bullets/Bullet.cs
 res://Bullets/Bullet.tscn
