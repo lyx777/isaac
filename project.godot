@@ -29,6 +29,7 @@ project/assembly_name="rougelike"
 enemy=""
 player=""
 BodyEnteredCostHP=""
+breakable=""
 
 [input]
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0mb7t3xoataw"]
+
+[ext_resource type="Script" uid="uid://5jkr6w81loui" path="res://Enemys/Knight.cs" id="1_yogqn"]
+[ext_resource type="Texture2D" uid="uid://ye73cqx5gyc1" path="res://pic/knight/1.png" id="2_3n5i8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qt4wh"]
+radius = 17.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5q1fc"]
+height = 20.0
+
+[node name="Knight" type="CharacterBody2D"]
+collision_mask = 7
+script = ExtResource("1_yogqn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["BodyEnteredCostHP", "enemy"]]
+position = Vector2(-1.0000019, -1.9073486e-06)
+scale = Vector2(0.61702126, 0.5917431)
+texture = ExtResource("2_3n5i8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -7)
+shape = SubResource("CircleShape2D_qt4wh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 11)
+shape = SubResource("CapsuleShape2D_5q1fc")

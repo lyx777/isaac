@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://2228b37xmrt4"]
+[gd_scene load_steps=10 format=3 uid="uid://2228b37xmrt4"]
 
 [ext_resource type="Script" uid="uid://ckf4inycx1dxq" path="res://Main.cs" id="1_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://bv02i1s4s40un" path="res://Player/Player.tscn" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://b2pwmsw52fbup" path="res://Bullets/Bullet.tscn" id="2_cm0pq"]
 [ext_resource type="Script" uid="uid://i1tplsrjikpo" path="res://Enemys/Enemy.cs" id="3_lgr22"]
-[ext_resource type="PackedScene" uid="uid://dcsm1pqcjarf1" path="res://Maps/room0.tscn" id="4_lgr22"]
-[ext_resource type="PackedScene" uid="uid://d2onjucemmnlb" path="res://Enemys/NerveEnding.tscn" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://dcsm1pqcjarf1" path="res://Maps/Room.tscn" id="4_lgr22"]
 [ext_resource type="Texture2D" uid="uid://d4djukj1vl6xa" path="res://pic/ui/full_heart.png" id="6_lgr22"]
 
 [sub_resource type="Resource" id="Resource_trn2v"]
@@ -33,11 +32,13 @@ script = ExtResource("1_cm0pq")
 BulletScene = ExtResource("2_cm0pq")
 EnemyScene = SubResource("PackedScene_03owx")
 
-[node name="room0" parent="." instance=ExtResource("4_lgr22")]
+[node name="Room0" parent="." instance=ExtResource("4_lgr22")]
 
 [node name="Player" parent="." instance=ExtResource("1_uu6xs")]
-position = Vector2(114, 133)
-collision_mask = 3
+position = Vector2(108, 199)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(1.5, 1.5)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -79,8 +80,14 @@ offset_right = 159.0
 offset_bottom = 47.0
 texture = ExtResource("6_lgr22")
 
-[node name="NerveEnding" parent="." instance=ExtResource("5_fos0i")]
-position = Vector2(261, 117)
+[node name="BoomNum" type="Label" parent="UI"]
+offset_left = 15.0
+offset_top = 53.0
+offset_right = 55.0
+offset_bottom = 93.0
 
-[node name="NerveEnding2" parent="." instance=ExtResource("5_fos0i")]
-position = Vector2(265.00003, 267)
+[node name="KeyNum" type="Label" parent="UI"]
+offset_left = 14.0
+offset_top = 93.0
+offset_right = 54.0
+offset_bottom = 133.0

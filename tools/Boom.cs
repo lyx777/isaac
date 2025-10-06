@@ -6,7 +6,7 @@ public partial class Boom : Node2D
 	public float Radius = 100f;
 
 	public float Duration = 1.5f;
-	public int Damage = 2;
+	public int Damage = 10;
 
 	public override void _Ready()
 	{
@@ -19,7 +19,7 @@ public partial class Boom : Node2D
 		var bodies = new Godot.Collections.Array<Node>();
 		bodies.AddRange(GetTree().GetNodesInGroup("enemy"));
 		bodies.AddRange(GetTree().GetNodesInGroup("player"));
-
+		bodies.AddRange(GetTree().GetNodesInGroup("breakable"));
 		foreach (var node in bodies)
 		{
 			if (node is Node2D body)
@@ -30,8 +30,13 @@ public partial class Boom : Node2D
 				{
 					if (body is CombatActor actor)
 					{
-						actor.TakeDamage(Damage);
+						if (!actor.IsInGroup("player")) actor.TakeDamage(Damage);
+						else actor.TakeDamage(2);
 						GD.Print($"{actor.Name} took {Damage} damage from boom!");
+					}
+					else if(body is Stone stone)
+					{
+						stone.Break();
 					}
 				}
 			}

@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://yv1wkvq26tkh"]
+
+[ext_resource type="Script" uid="uid://bbicuy5pq1t6d" path="res://Maps/Door.cs" id="1_10agx"]
+[ext_resource type="Texture2D" uid="uid://bolkcjlwvvf8y" path="res://pic/door/l_door.png" id="2_6s811"]
+[ext_resource type="Texture2D" uid="uid://pbqabavg2mmw" path="res://pic/door/r_door.png" id="3_5rmr5"]
+[ext_resource type="Texture2D" uid="uid://bef4s7q68lkg8" path="res://pic/door/open_door.png" id="4_efl41"]
+[ext_resource type="Texture2D" uid="uid://bn8xtx42685hd" path="res://pic/door/lock.png" id="5_126yn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bk2h"]
+size = Vector2(70, 31)
+
+[node name="Door" type="StaticBody2D" node_paths=PackedStringArray("ClosedAndLockedTexture", "ClosedTexture")]
+script = ExtResource("1_10agx")
+ClosedAndLockedTexture = [NodePath("l_door"), NodePath("lock")]
+ClosedTexture = [NodePath("l_door"), NodePath("r_door")]
+
+[node name="l_door" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, -1)
+scale = Vector2(1.5, 1)
+texture = ExtResource("2_6s811")
+
+[node name="r_door" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(5, -1)
+scale = Vector2(1.5, 1)
+texture = ExtResource("3_5rmr5")
+
+[node name="door" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1)
+texture = ExtResource("4_efl41")
+
+[node name="lock" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(5, -1)
+scale = Vector2(1.5, 1)
+texture = ExtResource("5_126yn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -3.5)
+shape = SubResource("RectangleShape2D_6bk2h")

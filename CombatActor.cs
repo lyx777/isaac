@@ -11,6 +11,7 @@ public partial class CombatActor : CharacterBody2D
 	public float BloodTime = 0f;// 受伤无敌时间
 	public float BloodDuration = 0f;
 	public int currentHealth;
+	public int energy=0;
 	protected double shootTimer = 0.0;
 
 	public int BoomNum = 0; // 炸弹数量
@@ -29,17 +30,18 @@ public partial class CombatActor : CharacterBody2D
 
 	// 扣血
 
-	public virtual void TakeDamage(int amount)
+	public virtual void TakeDamage(int amount, Vector2 hitFrom = default)
 	{
-		if (BloodTime > 0) return; // 处于无敌时间
+		if (BloodTime > 0) return; // 无敌时间
 		currentHealth -= amount;
-		GD.Print(Name + " took damage: " + amount);
+		GD.Print(Name + " took damage: " + amount + " from " + hitFrom);
 		BloodTime = BloodDuration;
 		if (currentHealth <= 0)
 		{
 			Die();
 		}
 	}
+
 
 
 	// 死亡

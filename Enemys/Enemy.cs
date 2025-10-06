@@ -5,14 +5,12 @@ public partial class Enemy : CombatActor
 {
 	private Player player;
 	
-	public float Speed=120f;
+	public bool IsControlledExternally = false; // 外部动作控制（如小跳、冲刺）
+
+	public float Speed = 120f;
 	public override void _Ready()
 	{
 		player = GetTree().Root.GetNode<Player>("Main/Player");
-
-		MaxHealth = 5;
-		BulletSpeed = 500f;
-		ShootCD = 2f;
 
 		BulletScene = GD.Load<PackedScene>("res://Bullets/Bullet.tscn");
 
@@ -22,13 +20,18 @@ public partial class Enemy : CombatActor
 	{
 		//GD.Print("Enemy HP:" + currentHealth);
 		base._Process(delta);
+		if (IsControlledExternally) return;
 		if (Speed <= 0) return;
 		Vector2 dir = (player.GlobalPosition - GlobalPosition).Normalized();
 		Velocity = dir * Speed;
 		MoveAndSlide();
 		
 	}
-	
+	public Vector2 GetDirectionToPlayer()
+	{
+		Vector2 toPlayer = (player.GlobalPosition - GlobalPosition).Normalized();
+		return toPlayer;
+	}
 	protected override void Die()
 	{
 		GD.Print("Enemy down!");

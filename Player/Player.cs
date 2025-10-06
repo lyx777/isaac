@@ -17,6 +17,7 @@ public partial class Player : CombatActor
 {
 	public float moveSpeed = 250f;
 
+	public int KeyNum = 1;
 	public override void _Ready()
 	{
 		// 初始化玩家参数
@@ -25,13 +26,15 @@ public partial class Player : CombatActor
 		ShootCD = 0.5f;
 		BloodDuration = 1f;
 		BulletScene = GD.Load<PackedScene>("res://Bullets/Bullet.tscn");
-		BoomNum = 30;
+		BoomNum = 3;
 		base._Ready();
 	}
 
 	public override void _Process(double delta)
 	{
 		UpdateHearts();
+		UpdateKeys();
+		UpdateBoom();
 		base._Process(delta);
 
 		Godot.Vector2 inputDir = Godot.Vector2.Zero;
@@ -77,7 +80,7 @@ public partial class Player : CombatActor
 
 	private void UpdateHearts()
 	{
-		var hearts =GetTree().Root.GetNode<Control>("Main/UI/Hearts");
+		var hearts = GetTree().Root.GetNode<Control>("Main/UI/Hearts");
 		int tmp = currentHealth;
 		for (int i = 0; i < hearts.GetChildCount(); i++, tmp -= 2)
 		{
@@ -90,10 +93,22 @@ public partial class Player : CombatActor
 			{
 				heart.Texture = GD.Load<Texture2D>("res://pic/ui/empty_heart.png");
 			}
-			else if(tmp == 1)
+			else if (tmp == 1)
 			{
 				heart.Texture = GD.Load<Texture2D>("res://pic/ui/half_heart.png");
 			}
 		}
+	}
+
+	private void UpdateBoom()
+	{
+		var boomLabel = GetTree().Root.GetNode<Label>("Main/UI/BoomNum");
+		boomLabel.Text = $"Boom : {BoomNum}";
+	}
+
+	private void UpdateKeys()
+	{
+		var keyLabel = GetTree().Root.GetNode<Label>("Main/UI/KeyNum");
+		keyLabel.Text = $"Key : {KeyNum}";
 	}
 }

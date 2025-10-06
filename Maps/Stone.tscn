@@ -1,0 +1,27 @@
+[gd_scene load_steps=9 format=3 uid="uid://bhp3jqb256m5l"]
+
+[ext_resource type="Script" uid="uid://d3elmt8tvnmbd" path="res://Maps/Stone.cs" id="1_qalmc"]
+[ext_resource type="Texture2D" uid="uid://dls080agf5l0u" path="res://pic/stone/split_1.png" id="2_ponfp"]
+[ext_resource type="Texture2D" uid="uid://blmav6vlmenee" path="res://pic/stone/split_2.png" id="3_b6b1t"]
+[ext_resource type="Texture2D" uid="uid://kfnx5q8xh7rt" path="res://pic/stone/split_3.png" id="4_6xvag"]
+[ext_resource type="Texture2D" uid="uid://d3jotxokwnke2" path="res://pic/stone/split_4.png" id="5_wodnd"]
+[ext_resource type="Texture2D" uid="uid://cvj4tt6awx235" path="res://pic/stone/split_5.png" id="6_kbrs4"]
+[ext_resource type="Texture2D" uid="uid://bg47hmadgi6ui" path="res://pic/stone/split_6.png" id="7_g38t4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyhm4"]
+size = Vector2(33.5, 36.5)
+
+[node name="Stone" type="StaticBody2D" groups=["breakable"]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_qalmc")
+RockTextures = Array[Texture2D]([ExtResource("2_ponfp"), ExtResource("3_b6b1t"), ExtResource("4_6xvag"), ExtResource("5_wodnd"), ExtResource("6_kbrs4"), ExtResource("7_g38t4")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.9999989, -2.0000005)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_ponfp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.75, -2.25)
+shape = SubResource("RectangleShape2D_dyhm4")

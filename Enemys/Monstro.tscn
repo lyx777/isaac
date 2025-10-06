@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://7lm7nlv0rn4p"]
+
+[ext_resource type="Script" uid="uid://d0js2rc2qr31a" path="res://Enemys/Monstro.cs" id="1_a7fdi"]
+[ext_resource type="Texture2D" uid="uid://cvgym2iqdiuti" path="res://pic/boss/Monstro/8.png" id="10_060ft"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8y2ow"]
+radius = 32.0
+height = 64.0
+
+[node name="Monstro" type="CharacterBody2D" groups=["BodyEnteredCostHP", "enemy"]]
+collision_mask = 7
+script = ExtResource("1_a7fdi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 12)
+shape = SubResource("CapsuleShape2D_8y2ow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("10_060ft")
+
+[node name="GunPoint" type="Marker2D" parent="."]
+position = Vector2(-6, 12)
+rotation = -3.0855405
