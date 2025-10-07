@@ -142,7 +142,16 @@ public partial class Player : CombatActor
 	}
 	public void PickupActiveItem(IUsableItem item)
 	{
+		if (ActiveItemInHand != null)
+		{
+			// 假设每个 IUsableItem 都有一个对应的 PackedScene 路径
+			var dropScene = GD.Load<PackedScene>(ActiveItemInHand.DropScenePath);
+			var drop = dropScene.Instantiate<Area2D>();
+			drop.GlobalPosition = GlobalPosition; // 玩家当前位置
+			GetTree().Root.AddChild(drop);
 
+			GD.Print($"丢弃旧的主动道具：{ActiveItemInHand.ItemName}");
+		}
 		ActiveItemInHand = item;
 		// 这里可以添加UI更新逻辑，比如显示当前持有的道具图标
 		var ItemIcon = GetTree().Root.GetNode<TextureRect>("Main/UI/ItemIcon");

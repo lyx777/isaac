@@ -5,8 +5,7 @@ public class Razor : IUsableItem
 {
     public string ItemName => "剃刀片";
     public Texture2D Icon => GD.Load<Texture2D>("res://pic/items/Razor.png");
-
-
+    public string DropScenePath => "res://items/RazorPickup.tscn";
     public void Use(Player player)
     {
         // 玩家扣血

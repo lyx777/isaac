@@ -4,6 +4,9 @@ public interface IUsableItem
 {
 	string ItemName { get; }
 	
-	Texture2D Icon { get; } // Optional: Add an icon property if needed
+	Texture2D Icon { get; }
+
+	string DropScenePath{ get; }
+	
 	void Use(Player player);
 }

@@ -6,6 +6,7 @@ public class BookOfSin : IUsableItem
     public string ItemName => "七原罪之书";
 
     public Texture2D Icon => GD.Load<Texture2D>("res://pic/items/bookofsin.png");
+    public string DropScenePath => "res://items/BookofsinPickUp.tscn";
     private PackedScene[] dropPool;
 
     public BookOfSin(PackedScene[] pool)
