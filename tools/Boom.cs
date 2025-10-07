@@ -30,7 +30,7 @@ public partial class Boom : Node2D
 				{
 					if (body is CombatActor actor)
 					{
-						if (!actor.IsInGroup("player")) actor.TakeDamage(Damage);
+						if (!actor.IsInGroup("player")) actor.TakeDamage(Damage, GlobalPosition,true);
 						else actor.TakeDamage(2);
 						GD.Print($"{actor.Name} took {Damage} damage from boom!");
 					}

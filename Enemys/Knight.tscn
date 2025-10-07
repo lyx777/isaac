@@ -9,7 +9,7 @@ radius = 17.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5q1fc"]
 height = 20.0
 
-[node name="Knight" type="CharacterBody2D"]
+[node name="Knight" type="CharacterBody2D" groups=["BodyEnteredCostHP", "enemy"]]
 collision_mask = 7
 script = ExtResource("1_yogqn")
 

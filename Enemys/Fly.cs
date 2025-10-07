@@ -6,7 +6,7 @@ public partial class Fly : Enemy
 	public override void _Ready()
 	{
 		Speed = 80f;
-		MaxHealth = 3;
+		MaxHealth = 2;
 		var anim = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		anim.Play("default");
 

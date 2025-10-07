@@ -17,26 +17,42 @@ public partial class Monstro : Enemy
 	private float bigJumpTimer = 0f;
 	private bool isBigJumping = false;
 
+	private bool BindBoss = false;
 	private bool isSmallJumping = false;
 	private Random rnd = new Random();
 	public Player player;
+	[Signal] public delegate void HealthChangedEventHandler(int current, int max);
+	[Signal] public delegate void BossDiedEventHandler();
 	public override void _Ready()
 	{
 		BulletScene = GD.Load<PackedScene>("res://Bullets/Bullet.tscn");
 		BulletSpeed = 200f;
 		player = GetTree().Root.GetNode<Player>("Main/Player");
 		collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
-		Speed = 50f; 
-		MaxHealth = 50;
+		Speed = 50f;
+		MaxHealth = 100;
 		base._Ready();
 		shortJumpTimer = ShortJumpCooldown;
 		bigJumpTimer = BigJumpCooldown;
+		EmitSignal(SignalName.HealthChanged, currentHealth, MaxHealth);
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (player == null) return;
-
+		if (currentHealth <= 0)
+		{
+			GD.Print("Boss Die");
+			Die();
+			return;
+		}
+		if (player == null || !IsActive) return;
+		if (!BindBoss)
+		{
+			BindBoss = true;
+			var roomManager = GetTree().Root.GetNode<RoomManager>("Main/RoomManager");
+			roomManager.EnterBossRoom();
+		}
+		
 		shortJumpTimer -= (float)delta;
 		bigJumpTimer -= (float)delta;
 		if (isBigJumping) return; // 大跳时不做其他动作
@@ -75,11 +91,21 @@ public partial class Monstro : Enemy
 
 	}
 
+	public override void TakeDamage(int amount, Vector2 hitFrom = default,bool isBomb=false)
+	{
+		base.TakeDamage(amount, hitFrom);
+		EmitSignal(SignalName.HealthChanged, currentHealth, MaxHealth);
+		if (currentHealth <= 0)
+		{
+			EmitSignal(SignalName.BossDied);
+		}
+	}
+
 	private void DoShortJump()
 	{
 		// 朝玩家短距离移动
 		TargetPosition = player.GlobalPosition;
-		
+
 		isSmallJumping = true;
 		IsControlledExternally = true;
 

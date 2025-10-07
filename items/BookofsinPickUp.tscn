@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=3 uid="uid://7rnk10x1eye0"]
+
+[ext_resource type="Script" uid="uid://c521s6mn1dhed" path="res://items/BookofsinPickUp.cs" id="1_7fydf"]
+[ext_resource type="Texture2D" uid="uid://b7w4b412hp5ra" path="res://pic/items/bookofsin.png" id="2_61opv"]
+[ext_resource type="PackedScene" uid="uid://cosutb7no8x0l" path="res://pickups/Hp.tscn" id="2_yo75c"]
+[ext_resource type="PackedScene" uid="uid://btehgffwnbg5b" path="res://pickups/Key.tscn" id="3_g0flg"]
+[ext_resource type="Texture2D" uid="uid://dx052x1ydeqam" path="res://pic/items/bookofsinR.png" id="3_hs0db"]
+[ext_resource type="PackedScene" uid="uid://brnhroanji5qb" path="res://pickups/Bomb.tscn" id="4_2lro1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_amrqf"]
+
+[node name="BookofsinPickUp" type="Area2D" node_paths=PackedStringArray("textureRect")]
+script = ExtResource("1_7fydf")
+DropPool = Array[PackedScene]([ExtResource("2_yo75c"), ExtResource("3_g0flg"), ExtResource("4_2lro1")])
+textureRect = NodePath("TextureRect")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_61opv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_amrqf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 178.0
+offset_bottom = 106.0
+texture = ExtResource("3_hs0db")
+expand_mode = 1

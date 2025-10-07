@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://2228b37xmrt4"]
+[gd_scene load_steps=29 format=3 uid="uid://2228b37xmrt4"]
 
 [ext_resource type="Script" uid="uid://ckf4inycx1dxq" path="res://Main.cs" id="1_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://bv02i1s4s40un" path="res://Player/Player.tscn" id="1_uu6xs"]
@@ -11,6 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://do0eobbni36rr" path="res://Maps/Corridor.tscn" id="6_trn2v"]
 [ext_resource type="PackedScene" uid="uid://brnhroanji5qb" path="res://pickups/Bomb.tscn" id="6_wkp8b"]
 [ext_resource type="PackedScene" uid="uid://btehgffwnbg5b" path="res://pickups/Key.tscn" id="7_20pc6"]
+[ext_resource type="PackedScene" uid="uid://1vtf2tpfkdwe" path="res://Maps/Spikeweed.tscn" id="7_mxvw5"]
+[ext_resource type="PackedScene" uid="uid://d2onjucemmnlb" path="res://Enemys/NerveEnding.tscn" id="8_5vvyt"]
+[ext_resource type="PackedScene" uid="uid://bp5kjmm5hpsq4" path="res://items/InnerEye.tscn" id="9_c6i3y"]
+[ext_resource type="PackedScene" uid="uid://c7kkavnrdwxqy" path="res://items/ChocolateMilk.tscn" id="10_c2ibq"]
+[ext_resource type="PackedScene" uid="uid://dqk64dbvu0mdp" path="res://items/Distantadmiration.tscn" id="11_j4qnp"]
+[ext_resource type="PackedScene" uid="uid://7rnk10x1eye0" path="res://items/BookofsinPickUp.tscn" id="12_fpfj3"]
+[ext_resource type="PackedScene" uid="uid://dyrv0tqjxdcmk" path="res://items/RazorPickup.tscn" id="13_sc1dx"]
+[ext_resource type="PackedScene" uid="uid://bhp3jqb256m5l" path="res://Maps/Stone.tscn" id="15_3b0ty"]
+[ext_resource type="PackedScene" uid="uid://b0mb7t3xoataw" path="res://Enemys/Knight.tscn" id="17_bg4s2"]
+[ext_resource type="PackedScene" uid="uid://7lm7nlv0rn4p" path="res://Enemys/Monstro.tscn" id="18_hhcpw"]
+[ext_resource type="Script" uid="uid://cxgqf70tqt0bu" path="res://BossHP.cs" id="21_mxvw5"]
+[ext_resource type="Texture2D" uid="uid://c221vh4uulh8v" path="res://pic/ui/ui_bosshealthbar - 副本.png" id="22_hhcpw"]
+[ext_resource type="Script" uid="uid://cg3i6fv0jp0kl" path="res://RoomManager.cs" id="23_bg4s2"]
+[ext_resource type="Texture2D" uid="uid://btogau18uvmtm" path="res://pic/ui/HP.png" id="23_hhcpw"]
 
 [sub_resource type="Resource" id="Resource_trn2v"]
 metadata/__load_path__ = "res://icon.svg"
@@ -37,43 +51,195 @@ script = ExtResource("1_cm0pq")
 BulletScene = ExtResource("2_cm0pq")
 EnemyScene = SubResource("PackedScene_03owx")
 
-[node name="BasicRoom" parent="." instance=ExtResource("4_lgr22")]
-
-[node name="Enemys" type="Node2D" parent="BasicRoom"]
-
-[node name="Hp" parent="BasicRoom" instance=ExtResource("5_03owx")]
-position = Vector2(265, 208)
-
-[node name="Bomb" parent="BasicRoom" instance=ExtResource("6_wkp8b")]
-position = Vector2(266, 298)
-
-[node name="Key" parent="BasicRoom" instance=ExtResource("7_20pc6")]
-position = Vector2(266, 116)
-
 [node name="Corridor01" parent="." instance=ExtResource("6_trn2v")]
 position = Vector2(607, 127)
+collision_visibility_mode = 0
 
-[node name="BasicRoom2" parent="." instance=ExtResource("4_lgr22")]
-position = Vector2(1055, -1)
-
-[node name="Enemys" type="Node2D" parent="BasicRoom2"]
-
-[node name="Fly" parent="BasicRoom2/Enemys" instance=ExtResource("6_03owx")]
-position = Vector2(456, 255)
-
-[node name="Fly2" parent="BasicRoom2/Enemys" instance=ExtResource("6_03owx")]
-position = Vector2(450, 107)
+[node name="Key" parent="Corridor01" instance=ExtResource("7_20pc6")]
+position = Vector2(337, 81)
 
 [node name="Corridor02" parent="." instance=ExtResource("6_trn2v")]
 position = Vector2(1662, 127)
+collision_visibility_mode = 0
+
+[node name="Key" parent="Corridor02" instance=ExtResource("7_20pc6")]
+position = Vector2(337, 81)
+
+[node name="Corridor03" parent="." instance=ExtResource("6_trn2v")]
+position = Vector2(2719, 127)
+collision_visibility_mode = 0
+
+[node name="Key" parent="Corridor03" instance=ExtResource("7_20pc6")]
+position = Vector2(234, 83)
+
+[node name="Stage1" parent="." instance=ExtResource("4_lgr22")]
+
+[node name="Spikeweed" parent="Stage1" instance=ExtResource("7_mxvw5")]
+position = Vector2(427, 154)
+
+[node name="Spikeweed2" parent="Stage1" instance=ExtResource("7_mxvw5")]
+position = Vector2(428, 283)
+
+[node name="Enemys" type="Node2D" parent="Stage1"]
+
+[node name="NerveEnding" parent="Stage1/Enemys" instance=ExtResource("8_5vvyt")]
+position = Vector2(436, 199)
+MaxChargeTime = 2.0
+
+[node name="NerveEnding2" parent="Stage1/Enemys" instance=ExtResource("8_5vvyt")]
+position = Vector2(506, 140.00002)
+MaxChargeTime = 2.0
+
+[node name="NerveEnding3" parent="Stage1/Enemys" instance=ExtResource("8_5vvyt")]
+position = Vector2(510, 260)
+MaxChargeTime = 2.0
+
+[node name="Hp" parent="Stage1" instance=ExtResource("5_03owx")]
+position = Vector2(265, 200)
+
+[node name="Bomb" parent="Stage1" instance=ExtResource("6_wkp8b")]
+position = Vector2(266, 298)
+
+[node name="Key" parent="Stage1" instance=ExtResource("7_20pc6")]
+position = Vector2(266, 116)
+
+[node name="InnerEye" parent="Stage1" instance=ExtResource("9_c6i3y")]
+position = Vector2(854, 205)
+
+[node name="ChocolateMilk" parent="Stage1" instance=ExtResource("10_c2ibq")]
+position = Vector2(755, 206)
+
+[node name="Distantadmiration" parent="Stage1" instance=ExtResource("11_j4qnp")]
+position = Vector2(341, 71)
+
+[node name="BookofsinPickUp" parent="Stage1" instance=ExtResource("12_fpfj3")]
+position = Vector2(429, 66)
+
+[node name="RazorPickup" parent="Stage1" instance=ExtResource("13_sc1dx")]
+position = Vector2(517, 66)
+
+[node name="Stone" parent="Stage1" instance=ExtResource("15_3b0ty")]
+position = Vector2(36, 195)
+
+[node name="Stone2" parent="Stage1" instance=ExtResource("15_3b0ty")]
+position = Vector2(36, 232)
+
+[node name="Stage2" parent="." instance=ExtResource("4_lgr22")]
+position = Vector2(1055, -1)
+
+[node name="Stone2" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(377, 52)
+
+[node name="Stone3" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(378, 90)
+
+[node name="Stone4" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(378, 126)
+
+[node name="Stone5" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(377, 163)
+
+[node name="Stone6" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(378, 202)
+
+[node name="Stone7" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(379, 239)
+
+[node name="Stone8" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(379, 279)
+
+[node name="Stone9" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(379, 318)
+
+[node name="Stone10" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(380, 357)
+
+[node name="Stone11" parent="Stage2" instance=ExtResource("15_3b0ty")]
+position = Vector2(181, 195)
+
+[node name="Enemys" type="Node2D" parent="Stage2"]
+
+[node name="Fly" parent="Stage2/Enemys" instance=ExtResource("6_03owx")]
+position = Vector2(456, 255)
+MaxChargeTime = 2.0
+
+[node name="Fly2" parent="Stage2/Enemys" instance=ExtResource("6_03owx")]
+position = Vector2(450, 107)
+MaxChargeTime = 2.0
+
+[node name="Fly3" parent="Stage2/Enemys" instance=ExtResource("6_03owx")]
+position = Vector2(448, 171)
+MaxChargeTime = 2.0
+
+[node name="Fly4" parent="Stage2/Enemys" instance=ExtResource("6_03owx")]
+position = Vector2(524, 140)
+MaxChargeTime = 2.0
+
+[node name="Fly5" parent="Stage2/Enemys" instance=ExtResource("6_03owx")]
+position = Vector2(524, 214)
+MaxChargeTime = 2.0
+
+[node name="Stage3" parent="." instance=ExtResource("4_lgr22")]
+position = Vector2(2111, -1)
+
+[node name="Enemys" type="Node2D" parent="Stage3"]
+
+[node name="Knight" parent="Stage3/Enemys" instance=ExtResource("17_bg4s2")]
+position = Vector2(211, 198)
+
+[node name="Knight2" parent="Stage3/Enemys" instance=ExtResource("17_bg4s2")]
+position = Vector2(543, 206)
+
+[node name="Knight3" parent="Stage3/Enemys" instance=ExtResource("17_bg4s2")]
+position = Vector2(394, 316)
+
+[node name="Knight4" parent="Stage3/Enemys" instance=ExtResource("17_bg4s2")]
+position = Vector2(387, 71)
+
+[node name="Stone" parent="Stage3" instance=ExtResource("15_3b0ty")]
+position = Vector2(134, 282)
+
+[node name="Stone2" parent="Stage3" instance=ExtResource("15_3b0ty")]
+position = Vector2(138, 106)
+
+[node name="Stone3" parent="Stage3" instance=ExtResource("15_3b0ty")]
+position = Vector2(476, 106)
+
+[node name="Stone4" parent="Stage3" instance=ExtResource("15_3b0ty")]
+position = Vector2(476, 287)
+
+[node name="Stone5" parent="Stage3" instance=ExtResource("15_3b0ty")]
+position = Vector2(316, 201)
+
+[node name="Boss" parent="." instance=ExtResource("4_lgr22")]
+position = Vector2(3167, -1)
+
+[node name="Enemys" type="Node2D" parent="Boss"]
+
+[node name="Monstro" parent="Boss/Enemys" instance=ExtResource("18_hhcpw")]
+position = Vector2(318, 195)
+
+[node name="Stone" parent="Boss" instance=ExtResource("15_3b0ty")]
+position = Vector2(131, 119)
+
+[node name="Stone2" parent="Boss" instance=ExtResource("15_3b0ty")]
+position = Vector2(138, 284)
+
+[node name="Stone3" parent="Boss" instance=ExtResource("15_3b0ty")]
+position = Vector2(471, 291)
+
+[node name="Stone4" parent="Boss" instance=ExtResource("15_3b0ty")]
+position = Vector2(467, 117)
 
 [node name="Player" parent="." instance=ExtResource("1_uu6xs")]
-position = Vector2(108, 199)
+position = Vector2(93, 206)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.5, 1.5)
 
 [node name="UI" type="CanvasLayer" parent="."]
+scale = Vector2(1.005, 1.005)
+transform = Transform2D(1.005, 0, 0, 1.005, 0, 0)
 
 [node name="Hearts" type="Control" parent="UI"]
 layout_mode = 3
@@ -124,3 +290,31 @@ offset_left = 14.0
 offset_top = 93.0
 offset_right = 54.0
 offset_bottom = 133.0
+
+[node name="ItemIcon" type="TextureRect" parent="UI"]
+offset_left = 181.0
+offset_top = 11.0
+offset_right = 221.0
+offset_bottom = 51.0
+
+[node name="BossHP" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_mxvw5")
+
+[node name="BossHPBar" type="TextureProgressBar" parent="UI/BossHP"]
+layout_mode = 1
+offset_left = 393.03482
+offset_top = 17.910446
+offset_right = 649.0348
+offset_bottom = 57.910446
+scale = Vector2(2.555, 1.535)
+value = 100.0
+texture_under = ExtResource("22_hhcpw")
+texture_progress = ExtResource("23_hhcpw")
+tint_progress = Color(1, 0, 0, 1)
+
+[node name="RoomManager" type="Node" parent="."]
+script = ExtResource("23_bg4s2")

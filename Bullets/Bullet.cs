@@ -9,7 +9,8 @@ public partial class Bullet : Area2D
 {
 	public float Speed = 300f;
 	public Vector2 Direction = Vector2.Zero;
-	
+
+	public bool HasHit = false;
 	public float LifeTime = 1.5f; // 子弹存在时间
 	public int ATK = 1;
 	public Faction ShooterFaction;  // 发射方阵营
@@ -33,21 +34,29 @@ public partial class Bullet : Area2D
 
 	private void OnBodyEntered(Node body)
 	{
-		GD.Print("子弹碰撞检测");
-		GD.Print($"Type: {body.GetClass()}");
+		// GD.Print("子弹碰撞检测");
+		// GD.Print($"Type: {body.GetClass()}");
 
 		if (ShooterFaction == Faction.Player && body is Enemy enemy)
 		{
-			enemy.TakeDamage(ATK);
 			QueueFree();
+			if (!HasHit)
+			{
+				enemy.TakeDamage(ATK, GlobalPosition);
+				HasHit = true;
+			}
 		}
 		else if (ShooterFaction == Faction.Enemy && body is Player player)
 		{
-			player.TakeDamage(ATK);
 			QueueFree();
+			if (!HasHit)
+			{
+				player.TakeDamage(ATK);
+				HasHit = true;
+			}
 		}
 		// 碰撞墙壁
-		else if (body is TileMapLayer||body is Stone)
+		else if (body is TileMapLayer || body is Stone)
 		{
 			QueueFree();
 		}

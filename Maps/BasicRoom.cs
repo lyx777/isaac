@@ -26,6 +26,9 @@ public partial class BasicRoom : Node2D
 			{
 				if (child is Enemy enemy)
 				{
+					//输出是哪个房间敌人激活了
+
+					GD.Print($"房间{GetName()}敌人激活");
 					enemy.IsActive = true;
 				}
 			}
@@ -78,10 +81,13 @@ public partial class BasicRoom : Node2D
 	public void CheckEnemies()
 	{
 		var enemies = GetNode("Enemys").GetChildren();
-		if (enemies.Count == 0)
+		if (enemies.Count == 0&&isLocked)
 		{
 
 			UnlockDoors();
+			Player player = GetTree().Root.GetNode<Player>("Main/Player");
+			if (player.ATKBuffed)
+				player.ResetRoomBuffs();
 			ClearRoom = true;
 		}
 	}

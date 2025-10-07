@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7kkavnrdwxqy"]
+
+[ext_resource type="Script" uid="uid://dq8yajkkwl1wp" path="res://items/ChocolateMilk.cs" id="1_4jtvp"]
+[ext_resource type="Texture2D" uid="uid://dcmbigxjc4drg" path="res://pic/items/chocolatemilk.png" id="1_7g0xd"]
+[ext_resource type="Texture2D" uid="uid://bskxx0u6wcpvs" path="res://pic/items/chocolatemilkR.png" id="2_4jtvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iarpt"]
+
+[node name="ChocolateMilk" type="Area2D" node_paths=PackedStringArray("textureRect")]
+script = ExtResource("1_4jtvp")
+textureRect = NodePath("TextureRect")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7g0xd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iarpt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 161.92
+offset_bottom = 92.0
+texture = ExtResource("2_4jtvp")
+expand_mode = 1

@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqk64dbvu0mdp"]
+
+[ext_resource type="Texture2D" uid="uid://cttot04coajif" path="res://pic/items/distantadmiration.png" id="1_7a1ti"]
+[ext_resource type="Script" uid="uid://dipolp4utk0w" path="res://items/Distantadmiration.cs" id="1_ie78n"]
+[ext_resource type="PackedScene" uid="uid://cb7bdtyp7op8p" path="res://items/FlyOrbit.tscn" id="2_8bcua"]
+[ext_resource type="Texture2D" uid="uid://cocoi745q265t" path="res://pic/items/distantadmirationR.png" id="2_ie78n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7a1ti"]
+
+[node name="Distantadmiration" type="Area2D" node_paths=PackedStringArray("textureRect")]
+script = ExtResource("1_ie78n")
+FlyOrbitScene = ExtResource("2_8bcua")
+textureRect = NodePath("TextureRect")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7a1ti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7a1ti")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 189.0
+offset_bottom = 136.0
+texture = ExtResource("2_ie78n")
+expand_mode = 1

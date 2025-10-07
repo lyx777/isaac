@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyrv0tqjxdcmk"]
+
+[ext_resource type="Script" uid="uid://c32dp51nh7i1q" path="res://items/RazorPickup.cs" id="1_i2w7b"]
+[ext_resource type="Texture2D" uid="uid://s4ie2bw8aia6" path="res://pic/items/RazorR.png" id="2_i2w7b"]
+[ext_resource type="Texture2D" uid="uid://c7itg36oyjxqp" path="res://pic/items/Razor.png" id="2_wic7d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wic7d"]
+
+[node name="RazorPickup" type="Area2D" node_paths=PackedStringArray("textureRect")]
+script = ExtResource("1_i2w7b")
+textureRect = NodePath("TextureRect")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wic7d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wic7d")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 226.0
+offset_bottom = 130.0
+texture = ExtResource("2_i2w7b")
+expand_mode = 1

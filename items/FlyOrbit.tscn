@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb7bdtyp7op8p"]
+
+[ext_resource type="Script" uid="uid://1y6ufrj55gfm" path="res://items/FlyOrbit.cs" id="1_2e8ee"]
+[ext_resource type="Texture2D" uid="uid://cttot04coajif" path="res://pic/items/distantadmiration.png" id="1_w2qqc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2e8ee"]
+
+[node name="FlyOrbit" type="Area2D"]
+script = ExtResource("1_2e8ee")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_w2qqc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2e8ee")

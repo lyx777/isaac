@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://bp5kjmm5hpsq4"]
+[gd_scene load_steps=5 format=3 uid="uid://bp5kjmm5hpsq4"]
 
-[node name="InnerEye" type="Area2D"]
+[ext_resource type="Texture2D" uid="uid://dd2nduhxlnpya" path="res://pic/items/InnerEye.png" id="1_1hfin"]
+[ext_resource type="Script" uid="uid://douvq4ky462t" path="res://items/InnerEye.cs" id="1_httqk"]
+[ext_resource type="Texture2D" uid="uid://y4hebq8epd85" path="res://pic/items/InnerEyeR.png" id="2_httqk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g3new"]
+radius = 13.0
+
+[node name="InnerEye" type="Area2D" node_paths=PackedStringArray("textureRect")]
+script = ExtResource("1_httqk")
+textureRect = NodePath("TextureRect")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1hfin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2)
+shape = SubResource("CircleShape2D_g3new")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 179.0
+offset_bottom = 94.0
+texture = ExtResource("2_httqk")
+expand_mode = 1

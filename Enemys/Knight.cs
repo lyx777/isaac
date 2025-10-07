@@ -9,7 +9,7 @@ public partial class Knight : Enemy
 {
 	 public float WalkSpeed = 80f;
 	 public float DashSpeed = 200f;
-	 public float DashDuration = 1f;
+	 public float DashDuration = 1.2f;
 
 	public float DashAngle = 15f; 
 	private enum KnightState { Patrol, Dash }
@@ -29,10 +29,17 @@ public partial class Knight : Enemy
 
 	public override void _Process(double delta)
 	{
-
+		if (currentHealth <= 0)
+		{
+			GD.Print("Knight Die");
+			Die();
+			return;
+		}
+		if (!IsActive) return;
 		if (player == null) return;
 		//TODO:输出当前移动方向
 		//GD.Print($"Knight MoveDir: {moveDir}");
+		
 		switch (state)
 		{
 			case KnightState.Patrol:
@@ -51,11 +58,8 @@ public partial class Knight : Enemy
 		Velocity = moveDir * WalkSpeed;
 		MoveAndSlide();
 
-		// 也可以加上随机换方向的逻辑
-		// 例如每隔几秒或撞墙随机换一个方向
-		// 这里简单实现每隔3秒换一次方向
 		dashTimer -= (float)delta;
-		if (dashTimer <= 0f)
+		if (dashTimer <= 0f|| GetSlideCollisionCount() > 0)
 		{
 			PickRandomDirection();
 			dashTimer = 2f; // 重置计时器   
@@ -68,9 +72,10 @@ public partial class Knight : Enemy
 		MoveAndSlide();
 
 		dashTimer -= (float)delta;
-		if (dashTimer <= 0f)
+		if (dashTimer <= 0f || GetSlideCollisionCount() > 0)
 		{
 			state = KnightState.Patrol;
+			dashTimer = 1f;
 			//PickRandomDirection();
 		}
 	}
@@ -86,7 +91,7 @@ public partial class Knight : Enemy
 	{
 		Vector2 toPlayer = player.GlobalPosition - GlobalPosition;
 
-		if(toPlayer.Length() < 200f && IsPlayerInFront())
+		if(toPlayer.Length() < 250f && IsPlayerInFront())
 		{
 			StartDash();
 		}
@@ -111,14 +116,14 @@ public partial class Knight : Enemy
 	}
 
 	// -------- 正面防御 ----------
-	public override void TakeDamage(int dmg, Vector2 hitFrom)
+	public override void TakeDamage(int dmg, Vector2 hitFrom,bool isBomb=false)
 	{
 
-		Vector2 forward = moveDir;
-		Vector2 dirFrom = (GlobalPosition - hitFrom).Normalized();
+		Vector2 forward = moveDir.Normalized();
+		Vector2 dirFrom = (hitFrom-GlobalPosition).Normalized();
 
 		// 如果子弹来自正面（点积 > 0），免疫
-		if (forward.Dot(dirFrom) > 0.5f)
+		if (!isBomb &&forward.Dot(dirFrom) > 0.5f)
 		{
 			GD.Print("Knight 正面防御，不受伤");
 			return;
