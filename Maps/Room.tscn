@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://dcsm1pqcjarf1"]
+[gd_scene load_steps=3 format=4 uid="uid://dcsm1pqcjarf1"]
 
 [ext_resource type="TileSet" uid="uid://cscjcnoehel4l" path="res://assets/background.tres" id="1_sflp0"]
-[ext_resource type="Script" uid="uid://b4xk6wyiy035m" path="res://Maps/Room.cs" id="2_2eex7"]
-[ext_resource type="PackedScene" uid="uid://yv1wkvq26tkh" path="res://Maps/Door.tscn" id="2_b5y3k"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2eex7"]
-size = Vector2(542, 336)
+[ext_resource type="Script" uid="uid://b4xk6wyiy035m" path="res://Maps/BasicRoom.cs" id="2_2eex7"]
 
 [node name="Room" type="TileMapLayer"]
 use_parent_material = true
@@ -13,21 +9,3 @@ tile_map_data = PackedByteArray("AAARAAAAAAAIAAEAAAARAAEAAAAIAAIAAAARAAIAAAAIAAM
 tile_set = ExtResource("1_sflp0")
 collision_visibility_mode = 1
 script = ExtResource("2_2eex7")
-
-[node name="EntryArea" type="Area2D" parent="."]
-position = Vector2(304, 201)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EntryArea"]
-shape = SubResource("RectangleShape2D_2eex7")
-
-[node name="Doors" type="Node" parent="."]
-
-[node name="DoorRight" parent="Doors" instance=ExtResource("2_b5y3k")]
-position = Vector2(587, 212)
-rotation = 1.565913
-
-[node name="DoorLeft" parent="Doors" instance=ExtResource("2_b5y3k")]
-position = Vector2(20, 205)
-rotation = -1.5679706
-
-[node name="Enemys" type="Node" parent="."]

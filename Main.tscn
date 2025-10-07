@@ -1,11 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://2228b37xmrt4"]
+[gd_scene load_steps=15 format=3 uid="uid://2228b37xmrt4"]
 
 [ext_resource type="Script" uid="uid://ckf4inycx1dxq" path="res://Main.cs" id="1_cm0pq"]
 [ext_resource type="PackedScene" uid="uid://bv02i1s4s40un" path="res://Player/Player.tscn" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://b2pwmsw52fbup" path="res://Bullets/Bullet.tscn" id="2_cm0pq"]
 [ext_resource type="Script" uid="uid://i1tplsrjikpo" path="res://Enemys/Enemy.cs" id="3_lgr22"]
-[ext_resource type="PackedScene" uid="uid://dcsm1pqcjarf1" path="res://Maps/Room.tscn" id="4_lgr22"]
+[ext_resource type="PackedScene" uid="uid://dbcgw2yi73yyc" path="res://Maps/BasicRoom.tscn" id="4_lgr22"]
+[ext_resource type="PackedScene" uid="uid://cosutb7no8x0l" path="res://pickups/Hp.tscn" id="5_03owx"]
+[ext_resource type="PackedScene" uid="uid://cah1jy8okbidy" path="res://Enemys/Fly.tscn" id="6_03owx"]
 [ext_resource type="Texture2D" uid="uid://d4djukj1vl6xa" path="res://pic/ui/full_heart.png" id="6_lgr22"]
+[ext_resource type="PackedScene" uid="uid://do0eobbni36rr" path="res://Maps/Corridor.tscn" id="6_trn2v"]
+[ext_resource type="PackedScene" uid="uid://brnhroanji5qb" path="res://pickups/Bomb.tscn" id="6_wkp8b"]
+[ext_resource type="PackedScene" uid="uid://btehgffwnbg5b" path="res://pickups/Key.tscn" id="7_20pc6"]
 
 [sub_resource type="Resource" id="Resource_trn2v"]
 metadata/__load_path__ = "res://icon.svg"
@@ -32,7 +37,35 @@ script = ExtResource("1_cm0pq")
 BulletScene = ExtResource("2_cm0pq")
 EnemyScene = SubResource("PackedScene_03owx")
 
-[node name="Room0" parent="." instance=ExtResource("4_lgr22")]
+[node name="BasicRoom" parent="." instance=ExtResource("4_lgr22")]
+
+[node name="Enemys" type="Node2D" parent="BasicRoom"]
+
+[node name="Hp" parent="BasicRoom" instance=ExtResource("5_03owx")]
+position = Vector2(265, 208)
+
+[node name="Bomb" parent="BasicRoom" instance=ExtResource("6_wkp8b")]
+position = Vector2(266, 298)
+
+[node name="Key" parent="BasicRoom" instance=ExtResource("7_20pc6")]
+position = Vector2(266, 116)
+
+[node name="Corridor01" parent="." instance=ExtResource("6_trn2v")]
+position = Vector2(607, 127)
+
+[node name="BasicRoom2" parent="." instance=ExtResource("4_lgr22")]
+position = Vector2(1055, -1)
+
+[node name="Enemys" type="Node2D" parent="BasicRoom2"]
+
+[node name="Fly" parent="BasicRoom2/Enemys" instance=ExtResource("6_03owx")]
+position = Vector2(456, 255)
+
+[node name="Fly2" parent="BasicRoom2/Enemys" instance=ExtResource("6_03owx")]
+position = Vector2(450, 107)
+
+[node name="Corridor02" parent="." instance=ExtResource("6_trn2v")]
+position = Vector2(1662, 127)
 
 [node name="Player" parent="." instance=ExtResource("1_uu6xs")]
 position = Vector2(108, 199)

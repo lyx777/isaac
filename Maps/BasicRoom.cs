@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Room : TileMapLayer
+public partial class BasicRoom : Node2D
 {
 	public bool isLocked = false;
 
@@ -22,7 +22,15 @@ public partial class Room : TileMapLayer
 		if (body is Player && !isLocked && !ClearRoom)
 		{
 			LockDoors();
+			foreach (Node child in GetNode("Enemys").GetChildren())
+			{
+				if (child is Enemy enemy)
+				{
+					enemy.IsActive = true;
+				}
+			}
 		}
+		
 	}
 
 	private void LockDoors()
@@ -34,12 +42,16 @@ public partial class Room : TileMapLayer
 		{
 			if (child is Door door)
 			{
-				if(door.state==2)
-					door.state=1;
+				if (door.state == 2)
+				{
+					door.state = 1;
+					door.UpdateDoor();
+				}
 			}
+			GD.Print("门已关闭");
 		}
 
-		GD.Print("门已关闭");
+		
 	}
 
 	public void UnlockDoors()
@@ -52,7 +64,10 @@ public partial class Room : TileMapLayer
 			if (child is Door door)
 			{
 				if(door.state==1)
-					door.state=2; 
+				{
+					door.state = 2;
+					door.UpdateDoor();
+				}
 			}
 		}
 

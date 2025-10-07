@@ -10,33 +10,24 @@ public partial class Door : StaticBody2D
 	private Sprite2D sprite;
 	private CollisionShape2D collider;
 
-	private Room room;
+	private BasicRoom basicroom;
 	private Player player;
 	[Export] public int state = 0;//0 locked 1 closed 2 open
 
 	public override void _Ready()
 	{
-		room = GetOwner<Room>();
+		basicroom = GetParent().GetParent<BasicRoom>();
 		player = GetTree().Root.GetNode<Player>("Main/Player");
 		collider = GetNode<CollisionShape2D>("CollisionShape2D");
 		UpdateDoor();
 	}
 
-	public override void _Process(double delta)
-	{
-		if (player == null) return;
-		if (room.isLocked==false &&state == 0 && player.KeyNum > 0&& GlobalPosition.DistanceTo(player.GlobalPosition) < 40f) // 有钥匙且靠近门
-		{
-			state = 2; // 开门
-			player.KeyNum--;
-			UpdateDoor();
-		}
-	}
 	private void HideAll()
 	{
 
 		foreach (var pic in ClosedAndLockedTexture)
 		{
+			if(pic==null)GD.Print("null pic in ClosedAndLockedTexture");
 			if (pic != null) pic.Visible = false;
 		}
 		foreach (var pic in ClosedTexture)
@@ -57,7 +48,7 @@ public partial class Door : StaticBody2D
 					pic.Visible = true;
 				}
 			}
-			collider.Disabled = false;
+			collider.SetDeferred("disabled", false);
 		}
 		else if (state == 1)
 		{
@@ -68,11 +59,11 @@ public partial class Door : StaticBody2D
 					pic.Visible = true;
 				}
 			}
-			collider.Disabled = false;
+			collider.SetDeferred("disabled", false);
 		}
 		else if (state == 2)
 		{
-			collider.Disabled = true;
+			collider.SetDeferred("disabled", true);
 		}
 
 	}

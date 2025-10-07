@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cosutb7no8x0l"]
+
+[ext_resource type="Script" uid="uid://bkpd7d4pmornm" path="res://pickups/Hp.cs" id="1_5aece"]
+[ext_resource type="Texture2D" uid="uid://m3tnkseglgc2" path="res://pic/items/HP.png" id="1_g8i51"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5aece"]
+radius = 6.999375
+height = 15.998571
+
+[node name="Hp" type="Area2D" groups=["pickup"]]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_5aece")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.5841615
+shape = SubResource("CapsuleShape2D_5aece")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+texture = ExtResource("1_g8i51")

@@ -4,7 +4,8 @@ using System;
 public partial class Enemy : CombatActor
 {
 	private Player player;
-	
+
+	public bool IsActive = false;
 	public bool IsControlledExternally = false; // 外部动作控制（如小跳、冲刺）
 
 	public float Speed = 120f;
@@ -18,6 +19,7 @@ public partial class Enemy : CombatActor
 	}
 	public override void _Process(double delta)
 	{
+		if(!IsActive) return;
 		//GD.Print("Enemy HP:" + currentHealth);
 		base._Process(delta);
 		if (IsControlledExternally) return;

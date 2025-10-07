@@ -30,6 +30,7 @@ enemy=""
 player=""
 BodyEnteredCostHP=""
 breakable=""
+pickup=""
 
 [input]
 

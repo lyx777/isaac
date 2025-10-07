@@ -56,6 +56,12 @@ public partial class Player : CombatActor
 				TakeDamage(1);
 				GD.Print("玩家被敌人碰撞伤害！");
 			}
+			if(collider is Door door&&KeyNum>0&&door.state==0)
+			{
+				KeyNum--;
+				door.state = 2;
+				door.UpdateDoor();
+			}
 		}
 
 		if (Input.IsActionPressed("ar_left")) Shoot(new Godot.Vector2(-1, 0), Faction.Player);
@@ -67,7 +73,8 @@ public partial class Player : CombatActor
 		{
 			Explode();
 		}
-
+		
+		
 	}
 
 	protected override void Die()
@@ -77,7 +84,11 @@ public partial class Player : CombatActor
 		base.Die();
 		(GetTree().Root.GetNode<Label>("Main/CanvasLayer/EndGame")).Visible = true;
 	}
-
+	public void AddHP(int amount)
+	{
+		currentHealth = Math.Min(currentHealth + amount, MaxHealth);
+		UpdateHearts();
+	}
 	private void UpdateHearts()
 	{
 		var hearts = GetTree().Root.GetNode<Control>("Main/UI/Hearts");
